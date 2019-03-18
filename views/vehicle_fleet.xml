@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="vehicle_fleet_form_inherit" model="ir.ui.view">
+            <field name="name">fleet.vehicle.form.inherit</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <field name="color"  position="after">
+                    <field name="tonnage" />
+                </field>
+                <field name="color"  position="after">
+                    <field name="is_dispatched" />
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

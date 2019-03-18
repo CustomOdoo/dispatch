@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+        <!-- Fleet Dispatch form -->
+        <record id="view_fleet_dispatch_form" model="ir.ui.view">
+            <field name="name">fleet.dispatch.from</field>
+            <field name="model">fleet.dispatch</field>
+            <field name="arch" type="xml">
+                <form string="Fleet Dispatch" >
+                    <header>
+                        <field name="state" invisible="1" />
+                        <button name="dispatch" type="object" string="Dispatch"  
+                            class="oe_highlight" attrs="{'invisible':[('state', 'in', ['dispatched',])]}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="fleet" />
+                            <field name="tonnage" />
+                            <field name="driver" />
+                        </group>
+                        <separator string="Stock Pickings" />
+                        <group>
+                          <field name="stock_picking" nolabel="1"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="dispatch.flett_dispatch_list">
+            <field name="name">Fleet Dispatch</field>
+            <field name="model">fleet.dispatch</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="fleet" />
+                    <field name="driver" />
+                    <field name="tonnage" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="dispatch.fleet_dispatch_action_window">
+            <field name="name">Fleet Dispatch</field>
+            <field name="res_model">fleet.dispatch</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Dispatch" id="dispatch.menu_root" />
+
+        <menuitem name="Fleet Dispatch" id="fleet.menu_fleet_dispatch"
+                parent="dispatch.menu_root"
+                action="dispatch.fleet_dispatch_action_window" />
+    </data>
+</odoo>
