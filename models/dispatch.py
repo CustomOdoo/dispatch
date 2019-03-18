@@ -10,11 +10,11 @@ class FleetDispatch(models.Model):
     _inherit = 'mail.thread'
 
     fleet = fields.Many2one('fleet.vehicle', string='Fleet', 
-        domain=[('is_dispatched','=',False)])
-    tonnage = fields.Float(related='fleet.tonnage', string='Tonnage', readonly=True)
+        domain=[('is_dispatched','=',False)], required=True)
+    tonnage = fields.Float(related='fleet.tonnage', string='Tonnage (Kgs)', readonly=True)
     driver = fields.Many2one('res.partner', related='fleet.driver_id', string='Driver')
     stock_picking = fields.Many2many('stock.picking', string='Stock Transfer',
-        domain=[('state','=','done')])
+        domain=[('state','=','done'), ('picking_type_code','=','outgoing')])
     state = fields.Selection([('draft', 'Draft'), ('dispatched', 'Dispatched')], 'Status')
     total_weight = fields.Float('Total Weight', compute='compute_total_weight')
 
