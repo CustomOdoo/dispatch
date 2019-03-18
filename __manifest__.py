@@ -26,6 +26,7 @@
         'security/ir.model.access.csv',
         'views/dispatch.xml',
         'views/vehicle_fleet.xml',
+        'views/stock_picking.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
