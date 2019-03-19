@@ -4,7 +4,7 @@ from odoo import models, api, fields, _
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
-    is_shipped = fields.Boolean('Is Shipped', readonly=True)
+    is_shipped = fields.Boolean('Is Shipped')
     weight_total = fields.Float('Weight Total', compute='compute_weight_total', store=True)
 
     @api.depends('move_ids_without_package','move_ids_without_package.product_weight_subtotal')
