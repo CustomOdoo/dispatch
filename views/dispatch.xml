@@ -25,8 +25,11 @@
                           <div class="oe_subtotal_footer_separator oe_inline o_td_label">
                             <label for="total_weight"/>
                           </div>
-                          <field name="total_weight" nolabel="1" class="oe_subtotal_footer_separator" 
-                            widget="monetary"/>
+                          <field name="total_weight" nolabel="1" class="oe_subtotal_footer_separator" />
+                          <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                            <label for="weight_difference"/>
+                          </div>
+                          <field name="weight_difference" nolabel="1" class="oe_subtotal_footer_separator" />
                         </group>
                     </sheet>
                     <div class="oe_chatter">

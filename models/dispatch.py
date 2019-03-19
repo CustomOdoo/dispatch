@@ -17,6 +17,7 @@ class FleetDispatch(models.Model):
         domain=[('state','=','done'), ('picking_type_code','=','outgoing')])
     state = fields.Selection([('draft', 'Draft'), ('dispatched', 'Dispatched')], 'Status')
     total_weight = fields.Float('Total Weight', compute='compute_total_weight')
+    weight_difference = fields.Float('Weight Difference', compute='compute_weight_difference')
 
     @api.depends('tonnage', 'stock_picking')
     def compute_total_weight(self):
@@ -30,6 +31,11 @@ class FleetDispatch(models.Model):
                     raise ValidationError("Picking weight has exceeded truck tonnage!")
                 else:
                     record.total_weight = weight
+    
+    @api.depends('total_weight', 'tonnage')
+    def compute_weight_difference(self):
+        for record in self:
+            record.weight_difference = record.tonnage - record.total_weight
 
     @api.depends('stock_picking', 'fleet')
     def dispatch(self):
