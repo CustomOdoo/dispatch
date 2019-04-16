@@ -17,7 +17,7 @@ class FleetDispatch(models.Model):
     total_weight = fields.Float('Total Weight', compute='compute_total_weight')
     weight_difference = fields.Float('Weight Difference', compute='compute_weight_difference')
     invoices = fields.Many2many('account.invoice', string='Invoices', 
-        domain=[('state','=','paid'),])
+        domain=[('state','=','paid'), ('type', '=', 'out_invoice')])
 
     @api.depends('tonnage', 'invoices.invoice_weight')
     def compute_total_weight(self):
