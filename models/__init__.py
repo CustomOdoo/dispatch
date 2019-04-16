@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import stock_picking, vehicle_fleet, dispatch, stock_move
+from . import stock_picking, vehicle_fleet, dispatch, stock_move, account_invoice
